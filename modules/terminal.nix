@@ -1,13 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  # Shell
+  # Fish binary for login shell (config handled by home-manager)
   programs.fish.enable = true;
-
-  # System-level terminal packages
-  environment.systemPackages = with pkgs; [
-    kitty
-  ];
 
   # Terminal font
   fonts.packages = with pkgs; [

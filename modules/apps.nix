@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    powertop
     brave
     kdePackages.kate
     cheese

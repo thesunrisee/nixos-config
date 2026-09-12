@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "alharis";
-  home.homeDirectory = "/home/alharis";
-
-  home.stateVersion = "26.05";
-
   # Fish
   programs.fish = {
     enable = true;
@@ -25,10 +20,6 @@
       lg = "lazygit";
       bt = "btop";
     };
-
-    interactiveShellInit = ''
-      zoxide init fish | source
-    '';
   };
 
   # Starship
@@ -107,96 +98,11 @@
     };
   };
 
-  # User-level environment
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
-  # Useful user packages
+  # CLI essentials
   home.packages = with pkgs; [
-    # CLI
     eza
     bat
     fd
     ripgrep
-    fzf
-    zoxide
-
-    # System
-    btop
-    fastfetch
-    lazygit
-
-    gh
-
-    # LSP
-    lua-language-server
-    nil
-    gopls
-    typescript-language-server
-    vscode-langservers-extracted
   ];
-    programs.git = {
-    enable = true;
-
-    settings = {
-      init.defaultBranch = "main";
-      pull.rebase = false;
-      core.editor = "nvim";
-
-      alias = {
-        s = "status";
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        lg = "log --oneline --graph --decorate";
-        last = "log -1 HEAD";
-        unstage = "restore --staged";
-      };
-    };
-  };
-programs.neovim = {
-  enable = true;
-  defaultEditor = true;
-  viAlias = true;
-  vimAlias = true;
-
-  plugins = with pkgs.vimPlugins; [
-    nvim-lspconfig
-    nvim-treesitter.withAllGrammars
-  ];
-
-  extraLuaConfig = ''
-    vim.lsp.config('lua_ls', {
-      cmd = { 'lua-language-server' },
-    })
-
-    vim.lsp.config('nil_ls', {
-      cmd = { 'nil' },
-    })
-
-    vim.lsp.config('gopls', {
-      cmd = { 'gopls' },
-    })
-
-    vim.lsp.config('ts_ls', {
-      cmd = { 'typescript-language-server', '--stdio' },
-    })
-
-    vim.lsp.enable({
-      'lua_ls',
-      'nil_ls',
-      'gopls',
-      'ts_ls',
-    })
-
-    vim.api.nvim_create_autocmd('FileType', {
-      callback = function()
-        pcall(vim.treesitter.start)
-      end,
-    })
-  '';
-};
-  programs.home-manager.enable = true;
 }

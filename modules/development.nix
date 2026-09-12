@@ -10,7 +10,6 @@
     python3
     go
 
-    neovim
     vscode
     opencode
   ];
