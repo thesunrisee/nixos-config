@@ -156,7 +156,7 @@
       };
     };
   };
-  programs.neovim = {
+programs.neovim = {
   enable = true;
   defaultEditor = true;
   viAlias = true;
@@ -164,6 +164,7 @@
 
   plugins = with pkgs.vimPlugins; [
     nvim-lspconfig
+    nvim-treesitter.withAllGrammars
   ];
 
   extraLuaConfig = ''
@@ -188,6 +189,12 @@
       'nil_ls',
       'gopls',
       'ts_ls',
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function()
+        pcall(vim.treesitter.start)
+      end,
     })
   '';
 };
