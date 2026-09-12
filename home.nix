@@ -129,6 +129,13 @@
     lazygit
 
     gh
+
+    # LSP
+    lua-language-server
+    nil
+    gopls
+    typescript-language-server
+    vscode-langservers-extracted
   ];
     programs.git = {
     enable = true;
@@ -149,6 +156,40 @@
       };
     };
   };
+  programs.neovim = {
+  enable = true;
+  defaultEditor = true;
+  viAlias = true;
+  vimAlias = true;
 
+  plugins = with pkgs.vimPlugins; [
+    nvim-lspconfig
+  ];
+
+  extraLuaConfig = ''
+    vim.lsp.config('lua_ls', {
+      cmd = { 'lua-language-server' },
+    })
+
+    vim.lsp.config('nil_ls', {
+      cmd = { 'nil' },
+    })
+
+    vim.lsp.config('gopls', {
+      cmd = { 'gopls' },
+    })
+
+    vim.lsp.config('ts_ls', {
+      cmd = { 'typescript-language-server', '--stdio' },
+    })
+
+    vim.lsp.enable({
+      'lua_ls',
+      'nil_ls',
+      'gopls',
+      'ts_ls',
+    })
+  '';
+};
   programs.home-manager.enable = true;
 }
