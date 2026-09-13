@@ -76,7 +76,7 @@
       window_padding_width = 12;
       confirm_os_window_close = 0;
 
-      hide_window_decorations = "yes";
+      hide_window_decorations = "no";
 
       cursor_shape = "beam";
       cursor_blink_interval = 0;
