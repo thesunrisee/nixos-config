@@ -1,12 +1,37 @@
 { config, pkgs, ... }:
 
 {
-  # Neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+  # Neovim (konfigurasi LazyVim ada di ./nvim)
+  home.packages = with pkgs; [
+    neovim
+
+    # LSP servers — diinstal via Nix supaya reproduksibel & auto-dikenali LazyVim (PATH)
+    lua-language-server
+    nil
+    gopls
+    typescript-language-server
+    vscode-langservers-extracted
+
+    # Ekstra bahasa: Go
+    delve
+    gofumpt
+
+    # Ekstra bahasa: PHP
+    php
+    phpactor
+
+    # Ekstra bahasa: Python
+    pyright
+    ruff
+
+    # nvim-treesitter: CLI untuk kompilasi parser (fallback dari prebuilt)
+    tree-sitter
+    gcc
+  ];
+
+  xdg.configFile."nvim" = {
+    source = ./nvim;
+    recursive = true;
   };
 
   # Git
@@ -29,13 +54,4 @@
       };
     };
   };
-
-  # LSP servers
-  home.packages = with pkgs; [
-    lua-language-server
-    nil
-    gopls
-    typescript-language-server
-    vscode-langservers-extracted
-  ];
 }
