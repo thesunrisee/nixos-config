@@ -6,6 +6,8 @@
     curl
     wget
 
+    gcc
+
     nodejs
     python3
     go

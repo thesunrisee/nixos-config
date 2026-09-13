@@ -9,5 +9,10 @@
     mpv
     onlyoffice-desktopeditors
     obsidian
+
+    discord
+    zoom-us
+    obs-studio
+    gimp
   ];
 }

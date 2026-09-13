@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -15,6 +20,7 @@
       self,
       nixpkgs,
       home-manager,
+      spicetify-nix,
       ...
     }:
     let
@@ -38,6 +44,7 @@
             home-manager.users.alharis = {
               imports = [
                 ./home/default.nix
+                spicetify-nix.homeManagerModules.default
               ];
             };
           }

@@ -8,4 +8,9 @@
     lazygit
     gh
   ];
+
+  # Spotify + Spicetify (theme/customizations via spicetify-nix)
+  programs.spicetify = {
+    enable = true;
+  };
 }
