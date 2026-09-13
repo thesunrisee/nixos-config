@@ -30,22 +30,22 @@
       format = "$directory$git_branch$git_status$character";
 
       directory = {
-        style = "bold";
+        style = "bold cyan";
         format = "[$path]($style) ";
       };
 
       git_branch = {
         format = "[$branch]($style) ";
-        style = "dimmed";
+        style = "bold blue";
       };
 
       git_status = {
         format = "[$all_status$ahead_behind]($style) ";
-        style = "dimmed";
+        style = "green";
       };
 
       character = {
-        success_symbol = "[❯](bold)";
+        success_symbol = "[❯](bold green)";
         error_symbol = "[❯](bold red)";
       };
     };
@@ -92,6 +92,39 @@
 
       url_style = "curly";
     };
+
+    # Nord palette (nord0-nord15) — kitty conf (settings tak bisa berisi attrset)
+    extraConfig = ''
+      background          #2E3440
+      foreground          #D8DEE9
+      selection_background #4C566A
+      selection_foreground #D8DEE9
+      url_color           #88C0D0
+      cursor              #D8DEE9
+      cursor_text_color   #2E3440
+
+      active_tab_foreground   #2E3440
+      active_tab_background   #D8DEE9
+      inactive_tab_foreground #D8DEE9
+      inactive_tab_background #4C566A
+
+      color0  #3B4252
+      color1  #BF616A
+      color2  #A3BE8C
+      color3  #EBCB8B
+      color4  #81A1C1
+      color5  #B48EAD
+      color6  #88C0D0
+      color7  #E5E9F0
+      color8  #4C566A
+      color9  #BF616A
+      color10 #A3BE8C
+      color11 #EBCB8B
+      color12 #81A1C1
+      color13 #B48EAD
+      color14 #8FBCBB
+      color15 #ECEFF4
+    '';
 
     shellIntegration = {
       enableFishIntegration = true;
